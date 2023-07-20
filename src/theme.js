@@ -1,26 +1,44 @@
+import React, {createContext} from 'react'
+
+const themeContext = createContext({});
+
 const theme = {
-    appBar: {
-      primary: '#24292e',
-      textSecondary: '#999',
-      textPrimary: '#fff'
-    },
+  light: {
+    style,
     colors: {
+      background: '#fefefe',
       textPrimary: '#24292e',
       textSecondary: '#586069',
-      primary: '#0366d6',
-      white: '#fefefe'
-    },
-    fontSizes: {
-      body: 14,
-      subheading: 16
-    },
-    fonts: {
-      main: 'System'
-    },
-    fontWeights: {
-      normal: '400',
-      bold: '700'
+      primary: '',
+      secondary: '',
+      cancel: '',
+    }
+  },
+  dark: {
+    style,
+    colors: {
+      background: '#121212',
+      textPrimary: '#fefefe',
+      textSecondary: '#grey',
+      primary: '',
+      secondary: '',
+      cancel: '',
     }
   }
-  
-  export default theme
+
+}
+
+const style = {
+  fontSizes: {
+    body: 14,
+    subheading: 16
+  },
+  fonts: {
+    main: 'System'
+  },
+  fontWeights: {
+    normal: '400',
+    bold: '700'
+  }
+}
+export default {theme, themeContext}
