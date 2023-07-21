@@ -2,13 +2,36 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TASKS = 'tasks'
 const TAGS = 'tags'
+const THEME = 'theme'
+
+const setTheme = async (theme) => {
+    try {
+        const jsonValue = JSON.stringify(theme);
+        await AsyncStorage.setItem(THEME, jsonValue);
+        //console.log('Tema guardado con éxito.');
+    } catch (error) {
+        // saving error
+        console.error('Error al guardar el tema:', error);
+    }
+};
+
+const getTheme = async () => {
+    try {
+        const theme = await AsyncStorage.getItem(THEME);
+        return theme != null ? JSON.parse(theme) : true;
+    } catch (error) {
+        // error reading value
+        console.error('Error al leer el tema:', error);
+    }
+};
+
 
 const storeTasks = async (value) => {
     try {
         const jsonValue = JSON.stringify(value);
         await AsyncStorage.setItem(TASKS, jsonValue);
         console.log('Tareas guardadas con éxito.');
-    } catch (e) {
+    } catch (error) {
         // saving error
         console.error('Error al guardar las tareas:', error);
     }
@@ -18,7 +41,7 @@ const getTasks = async () => {
     try {
         const jsonValue = await AsyncStorage.getItem(TASKS);
         return jsonValue != null ? JSON.parse(jsonValue) : null;
-    } catch (e) {
+    } catch (error) {
         // error reading value
         console.error('Error al leer las tareas:', error);
     }
@@ -62,7 +85,7 @@ const storeTags = async (value) => {
         const jsonValue = JSON.stringify(value);
         await AsyncStorage.setItem(TAGS, jsonValue);
         console.log('Etiquetas guardadas con éxito.');
-    } catch (e) {
+    } catch (error) {
         // saving error
         console.error('Error al guardar las etiquetas:', error);
     }
@@ -71,8 +94,8 @@ const storeTags = async (value) => {
 const getTags = async () => {
     try {
         const jsonValue = await AsyncStorage.getItem(TAGS);
-        return jsonValue!= null? JSON.parse(jsonValue) : null;
-    } catch (e) {
+        return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch (error) {
         // error reading value
         console.error('Error al leer las etiquetas:', error);
     }
@@ -109,6 +132,8 @@ const deleteTag = async (value) => {
 };
 
 export {
+    setTheme,
+    getTheme,
     storeTasks,
     getTasks,
     addTask,

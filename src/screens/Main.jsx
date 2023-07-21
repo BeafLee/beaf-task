@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+
+import themeContext from '../themeContext';
 
 import Home from './Home';
 import TaskList from './TaskList';
@@ -49,8 +50,9 @@ const SettingStack = () => {
 const Tab = createBottomTabNavigator();
 
 const Main = () => {
+    const theme = useContext(themeContext);
     return (
-        <NavigationContainer>
+        <>
             <Tab.Navigator screenOptions={({ route }) => ({
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
@@ -76,8 +78,8 @@ const Main = () => {
                 <Tab.Screen name="Schedule" component={ScheduleStack} />
                 <Tab.Screen name="Setting" component={SettingStack} />
             </Tab.Navigator>
-            {/* <StatusBar style="auto" /> */}
-        </NavigationContainer >
+            <StatusBar style={theme.statusBar} />
+        </>
     );
 };
 export default Main;

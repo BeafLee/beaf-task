@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { TouchableWithoutFeedback, Text, View } from 'react-native';
 import themeContext from '../themeContext';
 
+import { Ionicons } from '@expo/vector-icons';
+
 export default function ButtonStyled({ children, style, ...restOfProps }) {
     const theme = useContext(themeContext);
     return (
@@ -9,17 +11,17 @@ export default function ButtonStyled({ children, style, ...restOfProps }) {
             {...restOfProps}
         >
             <View style={[{
-                backgroundColor: theme.colors.primary,
-                borderRadius: 10,
-                margin: 10,
-                padding: 10,
+                backgroundColor: theme.colors.cancel,
+                borderRadius: 60,
+                height: 40,
+                width: 40,
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                position: 'absolute',
+                bottom: 10,
+                right: 10,
             }, style]}>
-                <Text style={{
-                    color: theme.colors.textButton,
-                }}
-                > {children}</Text>
+                <Ionicons name="add" size={30} color="white"/>
             </View>
 
         </TouchableWithoutFeedback >
